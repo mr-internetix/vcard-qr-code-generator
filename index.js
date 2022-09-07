@@ -7,6 +7,8 @@ const path = require('path')
 require('dotenv').config()
 const app = express();
 
+const PORT = process.env.PORT || 5000
+
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
@@ -25,6 +27,6 @@ app.use('/v1/generate', require('./routes/generate'));
 
 
 
-app.listen(process.env.PORT, () => {
-    console.log(`The Server is running on http://localhost:${process.env.PORT}`)
+app.listen(PORT, () => {
+    console.log(`The Server is running on http://localhost:${PORT}`)
 })
