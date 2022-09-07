@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Qr Code </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        ::placeholder {
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
+        input[type=text],
+        input[type=tel],
+        input[type=email],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            /* background: radial-gradient(ellipse at center,#EB6A5A 0,#c9402f 100%); */
+            /* background-color: #fff; */
+            background: none;
+            outline: none;
+            border: none;
+            appearance: none;
+            border-bottom: 2px solid #ccc;
+           
+            
+            box-sizing: border-box;
+            color:#fff;
+        }
+        
+        input[type=submit],
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover,
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        /* form {
+            width: 45vw;
+            border-radius: 5px;
+            
+            padding: 20px;
+        }
+         */
+        .form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* #form {
+            padding: 100px;
+            width: 50vw;
+        } */
+        
+        #generated_qrcode {
+            width: 50vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .hero-image1 {
+            background-color: #4a90e2;
+    background-image: 
+        radial-gradient(at 47% 33%, hsl(212.37, 72%, 59%) 0, transparent 59%), 
+        radial-gradient(at 82% 65%, hsl(271.91, 99%, 54%) 0, transparent 55%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+        .hero-image {
+  background-image: radial-gradient(at 47% 33%, hsl(212.37, 72%, 59%) 0, transparent 59%), 
+        radial-gradient(at 82% 65%, hsl(271.91, 99%, 54%) 0, transparent 55%),url("https://ik.imagekit.io/l68iueu0vc/contactless-cashless-payment-through-qr-code-mobile-banking-min_mDHe9Jb8h.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1662523848916");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+        
+        h3 {
+            text-align: center;
+            font: bold;
+        }
+        
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .btn {
+            border: 2px solid gray;
+            color: gray;
+            background-color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        .qrcode-img{
+            border: 20px solid rebeccapurple;
+        }
+        .zone {
+	 margin: auto;
+	
+	 top: 0;
+	 left: 0;
+	 bottom: 0;
+	 right: 0;
+	 /* background: radial-gradient(ellipse at center,#EB6A5A 0,#c9402f 100%); */
+     /* background:radial-gradient(ellipse at center,#fff 0,#f0f0f0 100%); */
+     border: 2px solid #ccc;
+	 margin-top: 10px;
+     margin-bottom: 10px;
+     padding: 10px;
+	
+	 /* border: 5px dashed #c0c0c0; */
+	 text-align: center;
+	 color: #fff;
+	 z-index: 20;
+	 transition: all 0.3s ease-out;
+	 box-shadow: 0 0 0 1px rgba(255,255,255,0.05), inset 0 0 .25em 0 rgba(0,0,0,0.25);
+}
+ .zone .btnCompression .active {
+	 background: #EB6A5A;
+	 color: white;
+}
+ .zone i {
+	 text-align: center;
+	 font-size: 10em;
+	 color: #fff;
+	 margin-top: 50px;
+}
+ .zone .selectFile {
+	 height: 50px;
+	 margin: 20px auto;
+	 position: relative;
+	 width: 200px;
+}
+ .zone label, .zone input {
+	 cursor: pointer;
+	 display: block;
+	 height: 50px;
+	 left: 0;
+	 position: absolute;
+	 top: 0;
+	 width: 100%;
+	 border-radius: 5px;
+}
+ .zone label {
+	 background: #c0c0c0;
+	 color: #fff;
+	 display: inline-block;
+	 font-size: 1.2em;
+	 line-height: 50px;
+	 padding: 0;
+	 text-align: center;
+	 white-space: nowrap;
+	 text-transform: uppercase;
+	 font-weight: 400;
+	 box-shadow: 0 1px 1px gray;
+}
+ .zone input[type=file] {
+	 opacity: 0;
+}
+ .zone.in {
+	 color: white;
+	 border-color: white;
+	 background: radial-gradient(ellipse at center,#EB6A5A 0,#c9402f 100%);
+}
+ .zone.in i {
+	 color: #fff;
+}
+ .zone.in label {
+	 background: #fff;
+	 color: #EB6A5A;
+}
+ .zone.hover {
+	 color: gray;
+	 border-color: white;
+	 background: #fff;
+	 border: 5px dashed gray;
+}
+ .zone.hover i {
+	 color: #EB6A5A;
+}
+ .zone.hover label {
+	 background: #fff;
+	 color: #EB6A5A;
+}
+ .zone.fade {
+	 transition: all 0.3s ease-out;
+	 opacity: 1;
+}
+/* Background styles */
+
+/* Glassmorphism card effect */
+.card {
+    padding: 40px;
+    backdrop-filter: blur(0px) saturate(117%);
+    -webkit-backdrop-filter: blur(0px) saturate(117%);
+    background-color: rgba(17, 25, 40, 0.68);
+    
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+.pad{
+    padding: 40px;
+
+}
+
+/* Generated by https://generator.ui.glass/ */
+
+@media screen and (max-width:760px) {
+    .form-wrapper{
+        flex-direction: column;
+    }    
+    .pad{
+        padding: 0px;
+    }
+    .card{
+        padding:10px;
+
+    }
+
+}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            
+        <img src="https://avatars.githubusercontent.com/u/69528685?v=4" width="100px">
+           
+        </div>
+        
+
+      </nav>
+      
+    <div class="form-wrapper hero-image">
+        <form class="pad" id="form" enctype="multipart/form-data">
+            <div class="card">
+                <h3 class="" style="color: #fff!important;"> FILL THE FORM TO GENERATE QR CODE </h3>
+                <input type="text" placeholder="Enter Your First Name" name="firstName">
+                <input type="text" placeholder="Enter Your Surname" name="surName">
+                <input type="text" placeholder="Enter The Title" name="title">
+                <input type="text" placeholder="Enter Your Address" name="address">
+                <input type="tel" placeholder="Enter Mobile No." name="telephone">
+                <input type="tel" placeholder="Enter Alternative Mobile No." name="telephone2">
+                <input type="email" placeholder="Enter Your Email Address" name="email">
+                <input type="text" placeholder="Enter The Website Url" name="website">
+                <input type="text" placeholder="Enter Your Company Name" name="company">
+                <div class="zone">
+
+                    <div id="dropZ">
+                    <i class="fa fa-cloud-upload"></i>
+                    <div>Drag and drop your file here</div>                    
+                    <span>OR</span>
+                    <div class="selectFile">       
+                        <label for="myfile">Select file</label>                   
+                        <input id="thumbfile" type="file" name="myfile" accept="image/png" single>
+                    </div>
+                    <p>Image size  : 50 x 50 px</p>
+                    </div>
+                
+                </div>
+
+                <!-- <div class="upload-btn-wrapper">
+                    <button class="btn">Upload a file</button>
+                    <input id="thumbfile" type="file" name="myfile" accept="image/png" single/>
+                </div> -->
+                <!-- <input type="text" placeholder="title" name="title"> -->
+                <input type="submit">
+
+            </div>
+            
+        </form>
+            <div class="">
+                <div id="generated_qrcode">
+                    <img id="qrcode" class="qrcode-img" src="" alt="qr_code" width="300px" , height="300px">
+                    <a href="" download="" id="download_button"> <button> Download </button></a>
+    
+    
+    
+                </div>
+
+            </div>
+            
+
+   
+
+        
+
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let qr_image = document.getElementById('qrcode');
+            let download_btn = document.getElementById('download_button');
+            let thumbfile = document.getElementById('thumbfile');
+            let cardin_page = document.getElementById('card');
+            qr_image.style.display = "none"
+            download_btn.style.display = "none"
+            document.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let firstName = e.target.firstName.value.trim()
+                let surName = e.target.surName.value.trim()
+                let title = e.target.title.value.trim()
+                let address = e.target.address.value.trim()
+                let telephone = e.target.telephone.value.trim()
+                let telephone2 = e.target.telephone2.value.trim()
+                let email = e.target.email.value.trim()
+                let website = e.target.website.value.trim()
+                let company = e.target.company.value.trim()
+
+                const data = {
+                    firstName,
+                    surName,
+                    title,
+                    address,
+                    telephone,
+                    telephone2,
+                    email,
+                    website,
+                    company
+                }
+
+                // fetch('/v1/generate/vCard2', {
+                //     method: "POST",
+                //     headers: {
+                //         'Content-Type': "Application/json"
+                //     },
+
+                //     body: JSON.stringify(data)
+                // }).then(response => response.json()).then((data) => {
+                //     qr_image.style.display = "flex"
+                //     qr_image.src = data.image
+                //     download_btn.style.display = "block"
+                //     download_btn.href = data.image
+                //     download_btn.download = "qr-code"
+                // })
+
+
+                // new method 
+
+                const form = new FormData();
+                form.append('firstName', firstName);
+                form.append('surName', surName);
+                form.append('title', title);
+                form.append('address', address);
+                form.append('telephone', telephone);
+                form.append('telephone2', telephone2);
+                form.append('email', email);
+                form.append('website', website);
+                form.append('company', company);
+                form.append('myfile', thumbfile.files[0]);
+
+                fetch('/v1/generate/vCard2', {
+                    method: "POST",
+                    body: form
+                }).then(response => response.json()).then((data) => {
+                    qr_image.style.display = "flex"
+                    qr_image.src = data.image
+                    download_btn.style.display = "block"
+                    download_btn.href = data.image
+                    download_btn.download = "qr-code",
+                    cardin_page.style.display = "none"
+                })
+
+
+
+
+            })
+
+
+        })
+    </script>
+    <script>
+        $(document).bind('dragover', function (e) {
+    var dropZone = $('.zone'),
+        timeout = window.dropZoneTimeout;
+    if (!timeout) {
+        dropZone.addClass('in');
+    } else {
+        clearTimeout(timeout);
+    }
+    var found = false,
+        node = e.target;
+    do {
+        if (node === dropZone[0]) {
+            found = true;
+            break;
+        }
+        node = node.parentNode;
+    } while (node != null);
+    if (found) {
+        dropZone.addClass('hover');
+    } else {
+        dropZone.removeClass('hover');
+    }
+    window.dropZoneTimeout = setTimeout(function () {
+        window.dropZoneTimeout = null;
+        dropZone.removeClass('in hover');
+    }, 100);
+});
+    </script>
+</body>
+
+</html>
+
+</html>

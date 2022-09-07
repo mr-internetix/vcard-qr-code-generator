@@ -1,0 +1,30 @@
+{
+    "name": "mynex-qr-backend",
+    "version": "1.0.0",
+    "description": "backend-server-for Mynex-qr",
+    "main": "index.js",
+    "type": "commonjs",
+    "scripts": {
+        "test": "nodemon index.js",
+        "start" : "node index.js"
+    },
+    "keywords": [
+        "qr-vcard",
+        "mynex-qr",
+        "qr-for-bussiness"
+    ],
+    "author": "mr-internetix",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "dotenv": "^16.0.2",
+        "ejs": "^3.1.8",
+        "express": "^4.18.1",
+        "mongoose": "^6.5.4",
+        "multer": "^1.4.5-lts.1",
+        "nodemon": "^2.0.19",
+        "qr-with-logo": "^1.0.5",
+        "qrcode": "^1.5.1",
+        "qrcode-with-logos": "^1.0.3"
+    }
+}
